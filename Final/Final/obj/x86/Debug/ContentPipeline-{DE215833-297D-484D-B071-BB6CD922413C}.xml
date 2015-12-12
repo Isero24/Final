@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>models\spaceship.x</Source>
+      <Name>models\spaceship</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\models\spaceship.xnb</Output>
+      <Time>2015-11-02T11:34:50.2053478-05:00</Time>
+      <Dependency>
+        <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\models\spaceship_0.xml</Key>
+        <Value>2015-11-28T12:58:41.7165727-05:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>map\heightmap.bmp</Source>
+      <Name>map\heightmap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\heightmap.xnb</Output>
+      <Time>2015-11-10T21:26:41.8094052-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\grass.dds</Source>
+      <Name>map\grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\grass.xnb</Output>
+      <Time>2015-11-12T17:35:20.1164651-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\testHeightMap.png</Source>
+      <Name>map\testHeightMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\testHeightMap.xnb</Output>
+      <Time>2015-11-12T18:11:08.4019309-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\testTexture.png</Source>
+      <Name>map\testTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\testTexture.xnb</Output>
+      <Time>2015-11-12T18:16:10.9553301-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\testTexture2.png</Source>
+      <Name>map\testTexture2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\testTexture2.xnb</Output>
+      <Time>2015-11-12T19:36:21.0318773-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\heightmapGreyscale.bmp</Source>
+      <Name>map\heightmapGreyscale</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\heightmapGreyscale.xnb</Output>
+      <Time>2015-11-17T06:58:20.3592745-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\heightmapBlack.bmp</Source>
+      <Name>map\heightmapBlack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\heightmapBlack.xnb</Output>
+      <Time>2015-11-17T06:57:37.6567508-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\heightmapTest2.png</Source>
+      <Name>map\heightmapTest2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\heightmapTest2.xnb</Output>
+      <Time>2015-11-26T14:21:05.8129269-05:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2015-11-12T23:41:54.1767979-05:00</Time>
+    </Item>
+    <Item>
+      <Source>models\spaceship.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\models\spaceship_0.xml</Output>
+      <Time>2015-11-02T11:34:50.2053478-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\white.dds</Source>
+      <Name>map\white</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\white.xnb</Output>
+      <Time>2015-11-30T15:49:49.9200405-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Bitmap1.bmp</Source>
+      <Name>map\Bitmap1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\Bitmap1.xnb</Output>
+      <Time>2015-11-30T15:50:15.226126-05:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{DE215833-297D-484D-B071-BB6CD922413C}</ContentProjectGUID>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\FinalContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T19:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T19:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T19:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T19:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T19:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T19:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2015-09-24T04:11:56.659563-04:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
