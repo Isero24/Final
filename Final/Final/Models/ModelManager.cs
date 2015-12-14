@@ -43,8 +43,8 @@ namespace Final
             //flightShip = new FlightShip(
                 //Game.Content.Load<Model>(@"models\spaceship"), new Vector3(0, 500, 0), GraphicsDevice);
 
-            //models.Add(new BasicModel(
-                //Game.Content.Load<Model>(@"models\spaceship"), new Vector3(10, 10, 10), GraphicsDevice));
+            models.Add(new BasicModel(
+                Game.Content.Load<Model>(@"CyberTank\CyberTankBlue"), new Vector3(10, 10, 10), GraphicsDevice));
 
             base.LoadContent();
         }

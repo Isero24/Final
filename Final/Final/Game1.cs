@@ -23,6 +23,14 @@ namespace Final
 
         SpriteFont font;
 
+        QuadTree _quadTree;
+        RasterizerState _rsDefault = new RasterizerState();
+        RasterizerState _rsWire = new RasterizerState();
+        bool _isWire;
+        KeyboardState _previousKeyboardState;
+
+        GraphicsDevice _device;
+
         public string testText = "null";
 
         public Terrain terrain;
@@ -52,8 +60,8 @@ namespace Final
             modelManager = new ModelManager(this);
             Components.Add(modelManager);
 
-            fpCamera = new FirstPersonCamera(this, new Vector3(0, 50, 5),
-                new Vector3(0, 50, 0), Vector3.Up);
+            fpCamera = new FirstPersonCamera(this, new Vector3(300, 50, 300),
+                new Vector3(300, 0, 100), Vector3.Up);
             Components.Add(fpCamera);
 
             base.Initialize();
@@ -65,13 +73,29 @@ namespace Final
         /// </summary>
         protected override void LoadContent()
         {
+            _rsDefault.CullMode = CullMode.CullCounterClockwiseFace;
+            _rsDefault.FillMode = FillMode.Solid;
+
+            _rsWire.CullMode = CullMode.CullCounterClockwiseFace;
+            _rsWire.FillMode = FillMode.WireFrame;
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            _device = graphics.GraphicsDevice;
+
             terrain = new Terrain(this);
-            terrain.load(@"map\heightmapTest2", 0, 0, 1.0f, 1.0f);
+            terrain.load(@"map\Size256\hmBlack", 0, 0, 1.0f, 1.0f);
 
             font = Content.Load<SpriteFont>(@"SpriteFont1");
+
+
+            //Texture2D heightMap = Content.Load<Texture2D>(@"map\hmLarge");
+
+            //_quadTree = new QuadTree(Vector3.Zero, heightMap, fpCamera.view, fpCamera.projection, _device, 1);
+            //_quadTree.Effect.Texture = Content.Load<Texture2D>(@"map\Bitmap1");
+
+            base.LoadContent();
 
             // TODO: use this.Content to load your game content here
         }
@@ -92,13 +116,37 @@ namespace Final
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            var currentKeyboardState = Keyboard.GetState();
+
+            if (_previousKeyboardState == null)
+                _previousKeyboardState = currentKeyboardState;
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            if (currentKeyboardState[Keys.Q] == KeyState.Up && _previousKeyboardState.IsKeyDown(Keys.Q))
+            {
+                if (_isWire)
+                {
+                    _device.RasterizerState = _rsDefault;
+                    _isWire = false;
+                }
+                else
+                {
+                    _device.RasterizerState = _rsWire;
+                    _isWire = true;
+                }
+            }
+
+            _previousKeyboardState = currentKeyboardState;
 
             terrain.Update(gameTime);
+
+            /*_quadTree.View = fpCamera.view;
+            _quadTree.Projection = fpCamera.projection;
+            _quadTree.CameraPosition = fpCamera.cameraPosition;
+            _quadTree.Update(gameTime);*/
 
             base.Update(gameTime);
         }
@@ -109,18 +157,18 @@ namespace Final
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             terrain.Draw(gameTime);
 
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, testText, Vector2.Zero, Color.Red);
-            spriteBatch.End();
+            //spriteBatch.Begin();
+            //spriteBatch.DrawString(font, testText, Vector2.Zero, Color.Red);
+            //spriteBatch.End();
 
-            GraphicsDevice.BlendState = BlendState.Opaque;
-            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            //GraphicsDevice.BlendState = BlendState.Opaque;
+            //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-            
+            //_quadTree.Draw(gameTime);
 
             base.Draw(gameTime);
 

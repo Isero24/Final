@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -198,10 +197,10 @@ namespace Final
         public override void Draw(GameTime gameTime)
         {
 
-            RasterizerState rs = new RasterizerState();
-            rs.CullMode = CullMode.None;
-            rs.FillMode = FillMode.Solid;
-            GraphicsDevice.RasterizerState = rs;
+            //RasterizerState rs = new RasterizerState();
+            //rs.CullMode = CullMode.None;
+            //rs.FillMode = FillMode.Solid;
+            //GraphicsDevice.RasterizerState = rs;
 
             effect.World = Matrix.Identity; // No Transformation of the terrain
             effect.View = ((Game1)Game).fpCamera.view;
@@ -228,12 +227,12 @@ namespace Final
             {
                 CurrentPass.Apply();
 
-                int nTriangles = (int)MathHelper.Min(numTriangles, 65535);
+                /*int nTriangles = (int)MathHelper.Min(numTriangles, 65535);
                 int index = 0;
                 int iteration = 1;
                 int indexNum = 0;
-                //while (nTriangles > 0)
-                //{
+                while (nTriangles > 0)
+                {
 
                     GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, index, 0, 65535 * 3, 0, nTriangles);
 
@@ -241,7 +240,18 @@ namespace Final
                     index += 65536 / 2;
                     indexNum += nTriangles - 1;
                     nTriangles = (int)MathHelper.Min(numTriangles - iteration * 65535, 65535);
-                //}
+                }*/
+
+                int nTriangles = (int)MathHelper.Min(numTriangles, 65535);
+                int index = 0;
+                for (int i = 1; index != ib.IndexCount; i++)
+                {
+                    GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, nTriangles * 3, index, nTriangles);
+                    //Draw all triangles that make up the mesh
+
+                    index += 3 * nTriangles;
+                    nTriangles = (int)MathHelper.Min(numTriangles - i * 65535, 65535);
+                }
             }
 
             base.Draw(gameTime);

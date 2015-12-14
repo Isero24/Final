@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
       <Source>models\spaceship.x</Source>
@@ -11,7 +11,7 @@
       <Time>2015-11-02T11:34:50.2053478-05:00</Time>
       <Dependency>
         <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\models\spaceship_0.xml</Key>
-        <Value>2015-11-28T12:58:41.7165727-05:00</Value>
+        <Value>2015-12-13T02:14:58.8173285-05:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -69,22 +69,49 @@
       <Time>2015-11-17T06:58:20.3592745-05:00</Time>
     </Item>
     <Item>
-      <Source>map\heightmapBlack.bmp</Source>
-      <Name>map\heightmapBlack</Name>
+      <Source>map\white.dds</Source>
+      <Name>map\white</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\heightmapBlack.xnb</Output>
-      <Time>2015-11-17T06:57:37.6567508-05:00</Time>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\white.xnb</Output>
+      <Time>2015-11-30T15:49:49.9200405-05:00</Time>
     </Item>
     <Item>
-      <Source>map\heightmapTest2.png</Source>
-      <Name>map\heightmapTest2</Name>
+      <Source>map\Bitmap1.bmp</Source>
+      <Name>map\Bitmap1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\heightmapTest2.xnb</Output>
-      <Time>2015-11-26T14:21:05.8129269-05:00</Time>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\Bitmap1.xnb</Output>
+      <Time>2015-11-30T15:50:15.226126-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\hmSmall.bmp</Source>
+      <Name>map\hmSmall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\hmSmall.xnb</Output>
+      <Time>2015-12-12T23:27:53.6384838-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\hm.bmp</Source>
+      <Name>map\hm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\hm.xnb</Output>
+      <Time>2015-12-13T01:04:19.4152468-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\hmLarge.png</Source>
+      <Name>map\hmLarge</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\hmLarge.xnb</Output>
+      <Time>2015-12-13T02:00:21.2507691-05:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont1.spritefont</Source>
@@ -103,22 +130,95 @@
       <Time>2015-11-02T11:34:50.2053478-05:00</Time>
     </Item>
     <Item>
-      <Source>map\white.dds</Source>
-      <Name>map\white</Name>
+      <Source>CyberTank\Tex_Tank_Cyber_Blue.png</Source>
+      <Name>CyberTank\Tex_Tank_Cyber_Blue</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\white.xnb</Output>
-      <Time>2015-11-30T15:49:49.9200405-05:00</Time>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Blue.xnb</Output>
+      <Time>2015-12-13T20:58:27.7511749-05:00</Time>
     </Item>
     <Item>
-      <Source>map\Bitmap1.bmp</Source>
-      <Name>map\Bitmap1</Name>
+      <Source>CyberTank\Tex_Tank_Cyber_Red.png</Source>
+      <Name>CyberTank\Tex_Tank_Cyber_Red</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\Bitmap1.xnb</Output>
-      <Time>2015-11-30T15:50:15.226126-05:00</Time>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Red.xnb</Output>
+      <Time>2015-12-13T20:58:28.174212-05:00</Time>
+    </Item>
+    <Item>
+      <Source>CyberTank\Tex_Tank_Cyber_Yellow.png</Source>
+      <Name>CyberTank\Tex_Tank_Cyber_Yellow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Yellow.xnb</Output>
+      <Time>2015-12-13T20:58:28.6312381-05:00</Time>
+    </Item>
+    <Item>
+      <Source>CyberTank\CyberTankBlue.FBX</Source>
+      <Name>CyberTank\CyberTankBlue</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.xnb</Output>
+      <Time>2015-12-13T21:41:57.6218766-05:00</Time>
+      <Dependency>
+        <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\CyberTank\CyberTankBlue_0.xml</Key>
+        <Value>2015-12-13T21:41:59.4704498-05:00</Value>
+      </Dependency>
+      <Request>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>CyberTank\CyberTankBlue.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\CyberTank\CyberTankBlue_0.xml</Output>
+      <Time>2015-12-13T21:41:57.6218766-05:00</Time>
+    </Item>
+    <Item>
+      <Source>CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue_0.xnb</Output>
+      <Time>2015-12-13T21:01:29.8625453-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\hmBlack512.bmp</Source>
+      <Name>map\hmBlack512</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\hmBlack512.xnb</Output>
+      <Time>2015-11-17T06:57:37.6567508-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size128\hmBlack128.bmp</Source>
+      <Name>map\Size128\hmBlack128</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\Size128\hmBlack128.xnb</Output>
+      <Time>2015-12-13T21:15:07.3440728-05:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size256\hmBlack.bmp</Source>
+      <Name>map\Size256\hmBlack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\Size256\hmBlack.xnb</Output>
+      <Time>2015-12-13T21:16:20.3838445-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
