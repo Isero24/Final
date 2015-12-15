@@ -8,9 +8,18 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Net;
 
 namespace Final
 {
+    public enum MessageType { UpdatePosition, WeaponFired, EndGame, StartGame, RejoinLobby, RestartGame, UpdateRemotePlayer, Kill, Respawn, CreateOrb }
+
+    public enum GameState
+    {
+        SignIn, FindSession,
+        CreateSession, Start, InGame, GameOver
+    }
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -23,6 +32,17 @@ namespace Final
 
         SpriteFont font;
 
+        Texture2D heightmap;
+
+        Vector3 lastCameraPosition;
+
+        Interface intrface;
+
+        RenderTarget2D renderTarget;
+
+        Player localPlayer;
+        Player remotePlayer;
+
         QuadTree _quadTree;
         RasterizerState _rsDefault = new RasterizerState();
         RasterizerState _rsWire = new RasterizerState();
@@ -31,16 +51,20 @@ namespace Final
 
         GraphicsDevice _device;
 
-        public string testText = "null";
-
         List<Terrain> terrainPieces;
 
         public Terrain terrain;
-        public Terrain terrain2;
-        public Terrain terrain3;
-        public Terrain terrain4;
 
-        public FirstPersonCamera fpCamera { get; protected set; }
+        // Initial state to trigger Windows LIVE signin
+        GameState currentGameState = GameState.SignIn;
+        NetworkSession networkSession;
+        PacketWriter packetWriter = new PacketWriter();
+        PacketReader packetReader = new PacketReader();
+
+        public static int xRes = 1500;
+        public static int yRes = 800;
+
+        public Camera camera { get; protected set; }
         
         public Game1()
         {
@@ -60,16 +84,17 @@ namespace Final
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            terrainPieces = new List<Terrain>();
 
             modelManager = new ModelManager(this);
-            Components.Add(modelManager);
 
-            fpCamera = new FirstPersonCamera(this, new Vector3(100, 800, -100),
+            camera = new Camera(this, new Vector3(100, 800, -100),
                 new Vector3(0, 0, 0), Vector3.Up);
-            Components.Add(fpCamera);
 
-            terrainPieces = new List<Terrain>();
+
+            Components.Add(camera);
+            Components.Add(modelManager);
+            Components.Add(new GamerServicesComponent(this));
 
             base.Initialize();
         }
@@ -80,7 +105,7 @@ namespace Final
         /// </summary>
         protected override void LoadContent()
         {
-            _rsDefault.CullMode = CullMode.None;
+            _rsDefault.CullMode = CullMode.CullCounterClockwiseFace;
             _rsDefault.FillMode = FillMode.Solid;
 
             _rsWire.CullMode = CullMode.CullCounterClockwiseFace;
@@ -91,31 +116,18 @@ namespace Final
 
             _device = graphics.GraphicsDevice;
 
-            // Operation split large height maps into smaller versions
-            // We want to generate our terrain segments in sizes of 256
-            // What I'm thinking is have this utilize map sizes that our multipes of 256 segments
-            // Could have a map size of 256, or a map size of 1028 which is four 256 size maps.
-            // Could have a map size of 4096 which has four 1028 segments which each have four 256 size maps.
+            lastCameraPosition = camera.cameraPosition;
 
-            // Test 1: 512 which is broken up into four map segments.
-            // Load initial heightmap into a variable
-            Texture2D heightmap = Content.Load<Texture2D>(@"map\Size128\heightmap4");
-            generateTerrain(heightmap);
+            heightmap = Content.Load<Texture2D>(@"map\Size128\heightmap4");
+            //generateTerrain(heightmap);
 
-            
+            intrface = new Interface();
 
-            font = Content.Load<SpriteFont>(@"SpriteFont1");
+            font = Content.Load<SpriteFont>("SpriteFont1");
 
-
-            //Texture2D heightMap = Content.Load<Texture2D>(@"map\hmLarge");
-
-            //_quadTree = new QuadTree(Vector3.Zero, heightMap, fpCamera.view, fpCamera.projection, _device, 1);
-            //_quadTree.Effect.Texture = Content.Load<Texture2D>(@"map\Bitmap1");
-
+            renderTarget = new RenderTarget2D(_device, 1500, 800, false, _device.PresentationParameters.BackBufferFormat, DepthFormat.Depth24Stencil8);
 
             base.LoadContent();
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -134,43 +146,342 @@ namespace Final
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            var currentKeyboardState = Keyboard.GetState();
+            Window.Title = String.Format("GameState: {0}", currentGameState);
 
-            if (_previousKeyboardState == null)
-                _previousKeyboardState = currentKeyboardState;
-
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
-            if (currentKeyboardState[Keys.Q] == KeyState.Up && _previousKeyboardState.IsKeyDown(Keys.Q))
+            if (this.IsActive)
             {
-                if (_isWire)
+                // Run different methods based on game state
+                switch (currentGameState)
                 {
-                    _device.RasterizerState = _rsDefault;
-                    _isWire = false;
-                }
-                else
-                {
-                    _device.RasterizerState = _rsWire;
-                    _isWire = true;
+                    case GameState.SignIn:
+                        Update_SignIn();
+                        break;
+                    case GameState.FindSession:
+                        Update_FindSession();
+                        break;
+                    case GameState.CreateSession:
+                        Update_CreateSession();
+                        break;
+                    case GameState.Start:
+                        Update_Start(gameTime);
+                        break;
+                    /*case GameState.InGame:
+                        Update_InGame(gameTime);
+                        break;
+                    case GameState.GameOver:
+                        Update_GameOver(gameTime);
+                        break;*/
                 }
             }
 
-            _previousKeyboardState = currentKeyboardState;
+            // Update the network session
+            if (networkSession != null)
+                networkSession.Update();
 
-            foreach (Terrain t in terrainPieces)
-            {
-                t.Update(gameTime);
-            }
-
-            /*_quadTree.View = fpCamera.view;
-            _quadTree.Projection = fpCamera.projection;
-            _quadTree.CameraPosition = fpCamera.cameraPosition;
-            _quadTree.Update(gameTime);*/
-
-            //Window.Title = String.Format("Terrain Tiles: {0}", terrainPieces.Count);
             base.Update(gameTime);
+        }
+
+        protected void Update_SignIn()
+        {
+            // If no local gamers are signed in, show sign-in screen
+            if (Gamer.SignedInGamers.Count < 1)
+            {
+                // Guide is a part of GamerServices, this will bring up the 
+                // SignIn window, allowing 1 user to Sign in, The false allows
+                // users to sign in locally
+                Guide.ShowSignIn(1, false);
+            }
+            else
+            {
+                // Local gamer signed in, move to find sessions
+                currentGameState = GameState.FindSession;
+            }
+        }
+
+        private void Update_FindSession()
+        {
+            // Find sessions of the current game over SystemLink, 1 local gamer,
+            // no special properties
+            AvailableNetworkSessionCollection sessions =
+                NetworkSession.Find(NetworkSessionType.SystemLink, 1, null);
+
+            if (sessions.Count == 0)
+            {
+                // If no sessions exist, move to the CreateSession game state
+                currentGameState = GameState.CreateSession;
+            }
+            else
+            {
+                // If a session does exist, join it, wire up events,
+                // and move to the Start game state
+                networkSession = NetworkSession.Join(sessions[0]);
+                WireUpEvents();
+                currentGameState = GameState.Start;
+            }
+        }
+
+        private void Update_CreateSession()
+        {
+            // Create a new session using SystemLink with a max of 1
+            // local player and a max of 2 total players
+            networkSession = NetworkSession.Create(NetworkSessionType.SystemLink, 1, 2);
+
+            // If the host drops, other player becomes host
+            networkSession.AllowHostMigration = true;
+
+            // Caonnot join a game in progress
+            networkSession.AllowJoinInProgress = false;
+
+            // Wire up events and move to the Start game state
+            WireUpEvents();
+            currentGameState = GameState.Start;
+        }
+
+        protected void WireUpEvents()
+        {
+            // Wire up events for gamers joining and leaving, defines what to do when a gamer
+            // Joins or leaves the session
+            networkSession.GamerJoined += GamerJoined;
+            networkSession.GamerLeft += GamerLeft;
+        }
+
+        void GamerJoined(object sender, GamerJoinedEventArgs e)
+        {
+            // Gamer joined. Set the tag for the gamer to a new UserControlledObject.
+            // These Tags are going to be your local representation of remote players
+            if (e.Gamer.IsHost)
+            {
+                // The Create players will create and return instances of your player class, setting
+                // the appropriate values to differentiate between local and remote players
+                // Tag is of type Object, which means it can hold any type
+                e.Gamer.Tag = CreateLocalPlayer(e.Gamer.Gamertag);
+            }
+            else
+            {
+                e.Gamer.Tag = CreateRemotePlayer(e.Gamer.Gamertag);
+            }
+        }
+
+        void GamerLeft(object sender, GamerLeftEventArgs e)
+        {
+            // Dispose of the network session, set it to null.
+            networkSession.Dispose();
+            networkSession = null;
+
+            // Perform any necessary clean up,
+            // stop sound track, etc.
+
+            // Go back to looking for another session
+            currentGameState = GameState.FindSession;
+        }
+
+        private object CreateLocalPlayer(string GamerTag)
+        {
+            InitializeLevel();
+
+            localPlayer = new Player(GamerTag);
+
+            return localPlayer;
+        }
+
+        private object CreateRemotePlayer(string GamerTag)
+        {
+            InitializeLevel();
+
+            remotePlayer = new Player(GamerTag);
+
+            return remotePlayer;
+        }
+
+        private void Update_Start(GameTime gameTime)
+        {
+            // Get local gamer, should be just one
+            LocalNetworkGamer localGamer = networkSession.LocalGamers[0];
+
+            // Check for game start key or button press
+            // only if there are two players
+            //if (networkSession.AllGamers.Count == 2)
+            //{
+                // If space bar or start button is pressed, begin the game
+                //if (Keyboard.GetState().IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
+                //{
+                    // Send message to other player that we're starting
+                    packetWriter.Write((int)MessageType.StartGame);
+                    localGamer.SendData(packetWriter, SendDataOptions.Reliable);
+
+                    // Call StartGame
+                    StartGame();
+                //}
+            //}
+
+            // Process any incoming packets
+            ProcessIncomingData(gameTime);
+        }
+
+        protected void StartGame()
+        {
+            // Set game state to InGame
+            currentGameState = GameState.InGame;
+
+            // Any other that that need to be set up
+            // for beginning a game
+            // Starting audio, resetting values, etc
+        }
+
+        private void InitializeLevel()
+        {
+            generateTerrain(heightmap);
+        }
+
+        protected void ProcessIncomingData(GameTime gameTime)
+        {
+            // Process incoming data
+            LocalNetworkGamer localGamer = networkSession.LocalGamers[0];
+
+            // While there are packets to be read . . .
+            while (localGamer.IsDataAvailable)
+            {
+                // Get the packet and info on sender
+                NetworkGamer sender;
+                localGamer.ReceiveData(packetReader, out sender);
+
+                // Ignore the packet if you sent it
+                if (!sender.IsLocal)
+                {
+                    // Read messagetype from start of packet and call appropriate method
+                    MessageType messageType = (MessageType)packetReader.ReadInt32();
+                    switch (messageType)
+                    {
+                        case MessageType.EndGame:
+                            EndGame();
+                            break;
+                        case MessageType.StartGame:
+                            StartGame();
+                            break;
+                        case MessageType.RejoinLobby:
+                            currentGameState = GameState.Start;
+                            break;
+                        case MessageType.RestartGame:
+                            StartGame();
+                            break;
+                        case MessageType.UpdateRemotePlayer:
+                            UpdateRemotePlayer(gameTime);
+                            break;
+
+                            // Any other actions for specific messages
+                    }
+                }
+            }
+        }
+
+        protected void EndGame()
+        {
+            // Perform whatever actions are to occur
+            // when a game ends. Stop music, play
+            // A certain sound effect, etc.
+            currentGameState = GameState.GameOver;
+        }
+
+        protected void UpdateRemotePlayer(GameTime gameTime)
+        {
+            // Get the other (non-local) player
+            // Think about combining this with GetOtherPlayer() method
+            //NetworkGamer theOtherGuy = GetOtherPlayer();
+
+            // Get the PlayerClass represeting the other player
+            //Player theOtherPlayer = ((Player)theOtherGuy.Tag);
+
+            // Read in the new position of the other player
+            // Set the position
+            remotePlayer.position = packetReader.ReadVector3(); ;
+
+            // Read any other information from the packet and handle it
+        }
+
+        protected NetworkGamer GetOtherPlayer()
+        {
+            // Search through the list of players and find the
+            // one that's remote
+            foreach (NetworkGamer gamer in networkSession.AllGamers)
+            {
+                if (!gamer.IsLocal)
+                    return gamer;
+            }
+            return null;
+        }
+
+        private void Update_InGame(GameTime gameTime)
+        {
+            // Update the local player
+            UpdateLocalPlayer(gameTime);
+
+            // Read any incoming data
+            ProcessIncomingData(gameTime);
+
+            // Only host checks for endgame
+            if (networkSession.IsHost)
+            {
+                // Check for end game conditions, if they are met send a message to other player
+                packetWriter.Write((int)MessageType.EndGame);
+                networkSession.LocalGamers[0].SendData(packetWriter, SendDataOptions.Reliable);
+                EndGame();
+            }
+        }
+
+        protected void UpdateLocalPlayer(GameTime gameTime)
+        {
+            // Get local player
+            LocalNetworkGamer localGamer = networkSession.LocalGamers[0];
+
+            // Get the local player's sprite
+            //Player local = (Player)localGamer.Tag;
+
+            // Call the local's Update method which will process user input
+            // for movement and update animation frame
+            // Boolean used to inform the update function that the local player is calling update,
+            // therefore update based on local input
+            localPlayer.Update(gameTime, true);
+
+            // Send message to other player with message tag and new position of local player
+            packetWriter.Write((int)MessageType.UpdateRemotePlayer);
+            packetWriter.Write(localPlayer.position);
+
+            // Send data to other player
+            localGamer.SendData(packetWriter, SendDataOptions.InOrder);
+
+            // Package up any other necessary data nad send it to other player
+        }
+
+        private void Update_GameOver(GameTime gameTime)
+        {
+            KeyboardState keyboardState = Keyboard.GetState();
+            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+            // If player presses enter or A button, restart game
+            if (keyboardState.IsKeyDown(Keys.Enter) || gamePadState.Buttons.A == ButtonState.Pressed)
+            {
+                // Send restart game message
+                packetWriter.Write((int)MessageType.RestartGame);
+                networkSession.LocalGamers[0].SendData(packetWriter, SendDataOptions.Reliable);
+                RestartGame();
+            }
+
+            // If player presses escape or B button, rejoin lobby
+            if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
+            {
+                // Send join lobby message
+                packetWriter.Write((int)MessageType.RejoinLobby);
+                networkSession.LocalGamers[0].SendData(packetWriter, SendDataOptions.Reliable);
+                //RejoinLobby();
+            }
+
+            // Read any incoming message
+            ProcessIncomingData(gameTime);
+        }
+
+        public void RestartGame()
+        {
+
         }
 
         /// <summary>
@@ -179,12 +490,62 @@ namespace Final
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            // Only draw when game is active
+            if (this.IsActive)
+            {
+                GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+                GraphicsDevice.BlendState = BlendState.Opaque;
+                GraphicsDevice.SetRenderTarget(renderTarget);
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+                GraphicsDevice.BlendState = BlendState.Opaque;
+
+                // Based on the current game state,
+                // call the appropriate method
+                switch (currentGameState)
+                {
+                    case GameState.SignIn:
+                    case GameState.FindSession:
+                    case GameState.CreateSession:
+                        GraphicsDevice.Clear(Color.DarkBlue);
+                        break;
+                    case GameState.Start:
+                        // Wrhite function to draw the start screen
+                        //DrawStartScreen();
+                        break;
+                    case GameState.InGame:
+                        // Write function to handle draws during game time (terrain, models, etc)
+                        DrawInGameScreen(gameTime);
+                        break;
+                    case GameState.GameOver:
+                        // Write function to draw game over screen
+                        //DrawGameOverScreen();
+                        break;
+                }
+            }
+
+            GraphicsDevice.SetRenderTarget(null);
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            GraphicsDevice.BlendState = BlendState.Opaque;
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+
+            spriteBatch.Draw(renderTarget, new Rectangle(0, 0, 1500, 800), Color.White);
+            intrface.Draw(spriteBatch, font, currentGameState, localPlayer);
+            spriteBatch.End();
+
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            GraphicsDevice.BlendState = BlendState.Opaque;
+
+        }
+
+        void DrawInGameScreen(GameTime gameTime)
+        {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             int tilesDrawn = 0;
-            foreach(Terrain t in terrainPieces)
+            foreach (Terrain t in terrainPieces)
             {
-                if (t.isVisible(new BoundingFrustum(fpCamera.view * fpCamera.projection)))
+                if (t.isVisible(new BoundingFrustum(camera.view * camera.projection)))
                 {
                     t.Draw(gameTime);
                     tilesDrawn++;
@@ -193,17 +554,9 @@ namespace Final
 
             Window.Title = String.Format("Terrain Tiles Drawn: {0} - Total Terrain Tiles: {1}", tilesDrawn, terrainPieces.Count);
 
-            //spriteBatch.Begin();
-            //spriteBatch.DrawString(font, testText, Vector2.Zero, Color.Red);
-            //spriteBatch.End();
-
-            //GraphicsDevice.BlendState = BlendState.Opaque;
-            //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-
-            //_quadTree.Draw(gameTime);
-
             base.Draw(gameTime);
 
+            //_quadTree.Draw(gameTime);
         }
 
         protected void generateTerrain(Texture2D heightmap)
@@ -215,7 +568,7 @@ namespace Final
 
             Rectangle sourceRectangle;
 
-            int segmentSize = 256 / 2;
+            int segmentSize = 256;
 
             tempData = new Texture2D(GraphicsDevice, segmentSize, segmentSize);
 
@@ -230,57 +583,32 @@ namespace Final
                 splitNum++;
             }
 
-            for (int a = 0; a <= 0; a++)
+            splitNum = 7;
+            for (int x = 0; x <= splitNum; x++)
             {
-                splitNum = 13;
-                for (int x = 0; x <= splitNum; x++)
+                for (int y = 0; y <= splitNum; y++)
                 {
-                    for (int y = 0; y <= splitNum; y++)
-                    {
-                        sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
-                        heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
-                        tempData.SetData(data);
-                        terrainPieces.Add(new Terrain(this));
-                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * 0), splitNum - y + (splitNum * 0), segmentSize - 1);
-                    }
+                    sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
+                    heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
+                    tempData.SetData(data);
+                    terrainPieces.Add(new Terrain(this));
+                    terrainPieces.Last().load(tempData, 0, 0, 2.0f, 2.0f, x + (splitNum * 0), splitNum - y + (splitNum * 0), segmentSize - 1);
                 }
+            }
 
-                for (int x = 0; x <= splitNum; x++)
+            for (int x = 0; x <= splitNum; x++)
+            {
+                for (int y = 0; y <= splitNum; y++)
                 {
-                    for (int y = 0; y <= splitNum; y++)
-                    {
-                        sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
-                        heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
-                        tempData.SetData(data);
-                        terrainPieces.Add(new Terrain(this));
-                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * 1), splitNum - y + (splitNum * 0), segmentSize - 1);
-                    }
-                }
-
-                for (int x = 0; x <= splitNum; x++)
-                {
-                    for (int y = 0; y <= splitNum; y++)
-                    {
-                        sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
-                        heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
-                        tempData.SetData(data);
-                        terrainPieces.Add(new Terrain(this));
-                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * 1), splitNum - y + (splitNum * 1), segmentSize - 1);
-                    }
-                }
-
-                for (int x = 0; x <= splitNum; x++)
-                {
-                    for (int y = 0; y <= splitNum; y++)
-                    {
-                        sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
-                        heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
-                        tempData.SetData(data);
-                        terrainPieces.Add(new Terrain(this));
-                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * 0), splitNum - y + (splitNum * 1), segmentSize - 1);
-                    }
+                    sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
+                    heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
+                    tempData.SetData(data);
+                    terrainPieces.Add(new Terrain(this));
+                    terrainPieces.Last().load(tempData, 0, 0, 2.0f, 3.0f, x + (splitNum * 1), splitNum - y + (splitNum * 0), segmentSize - 1);
                 }
             }
         }
+
+
     }
 }

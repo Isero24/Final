@@ -130,18 +130,18 @@ namespace Final
             VertexPositionNormalTexture[] vertices = GenerateTerrainVertices(offset);
 
             bounds = new BoundingBox(vertices[0].Position, vertices[vertices.Length - 1].Position);
+            bounds.Min.Y = -1000f;
+            bounds.Max.Y = 1000f;
 
             CalculateNormals(vertices);
 
             vb = new VertexBuffer(GraphicsDevice,
                 typeof(VertexPositionNormalTexture), numVertices,
                 BufferUsage.WriteOnly);
-
             vb.SetData<VertexPositionNormalTexture>(vertices);
 
             ib = new IndexBuffer(GraphicsDevice, typeof(ushort), numTriangles * 3,
                 BufferUsage.WriteOnly);
-
             ib.SetData<ushort>(indices);
             
         }
@@ -157,7 +157,6 @@ namespace Final
                 for (int j = 0; j < (vertexCountX - 1); j++)
                 {
                     ushort index = (ushort)(j + i * vertexCountZ);
-                    index2 = index;
 
                     // First Triangle
                     indices[indicesCount++] = index;
@@ -208,10 +207,6 @@ namespace Final
 
         private void CalculateNormals(VertexPositionNormalTexture[] vertices)
         {
-
-            ((Game1)Game).testText = vertices.Length.ToString() + "\n";
-            ((Game1)Game).testText += indices.Length.ToString() + "\n";
-
             for (int i = 0; i < indices.Length; i+= 3)
             {
                 Vector3 v1 = vertices[indices[i]].Position;
@@ -243,8 +238,8 @@ namespace Final
             //GraphicsDevice.RasterizerState = rs;
 
             effect.World = Matrix.Identity; // No Transformation of the terrain
-            effect.View = ((Game1)Game).fpCamera.view;
-            effect.Projection = ((Game1)Game).fpCamera.projection;
+            effect.View = ((Game1)Game).camera.view;
+            effect.Projection = ((Game1)Game).camera.projection;
             effect.Texture = terrainTexture;
             effect.TextureEnabled = true;
 
@@ -261,7 +256,7 @@ namespace Final
             GraphicsDevice.SetVertexBuffer(vb); // Set vertices
             GraphicsDevice.Indices = ib; // Set indices
 
-            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
+            GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
 
             foreach (EffectPass CurrentPass in effect.CurrentTechnique.Passes)
             {

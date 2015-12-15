@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Final", "Final\Final\Final.csproj", "{70CE9F16-7C06-4F35-807C-6F9DC02E8752}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "FinalContent", "Final\FinalContent\FinalContent.contentproj", "{DE215833-297D-484D-B071-BB6CD922413C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalContent", "Final\FinalContent\FinalContent.contentproj", "{DE215833-297D-484D-B071-BB6CD922413C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

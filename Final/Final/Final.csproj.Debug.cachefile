@@ -1,4 +1,3 @@
-Content\models\spaceship.xnb
 Content\map\heightmap.xnb
 Content\map\grass.xnb
 Content\map\testHeightMap.xnb
@@ -29,3 +28,25 @@ Content\map\Size128\heightmap4.xnb
 Content\SpriteFont1.xnb
 Content\CyberTank\CyberTankBlue.xnb
 Content\CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue_0.xnb
+Content\models\dsfsf.xnb
+Content\models\steel.xnb
+Content\models\jet.xnb
+Content\models\steel_0.xnb
+Content\models\dsfsf_0.xnb
+Content\models2\dark_fighter_6.xnb
+Content\dark_fighter_6\dark_fighter_6_color.xnb
+Content\dark_fighter_6\dark_fighter_6_color_0.xnb
+Content\aircraft x-35\diffuse_map.xnb
+Content\aircraft x-35\specular_map.xnb
+Content\aircraft x-35\x-35_fbx.xnb
+Content\aircraft x-35\diffuse_map_0.xnb
+Content\airplane\diff.xnb
+Content\airplane\bump.xnb
+Content\airplane\ju-87.xnb
+Content\Sample_Ship.xnb
+Content\airplane\diff_0.xnb
+Content\sh3.xnb
+Content\sh3_s.xnb
+Content\airplane\ju-87 - Copy.xnb
+Content\airplane\bump_0.xnb
+Content\bullet.xnb

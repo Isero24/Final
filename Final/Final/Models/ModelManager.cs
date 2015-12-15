@@ -17,7 +17,20 @@ namespace Final
     /// </summary>
     public class ModelManager : Microsoft.Xna.Framework.DrawableGameComponent
     {
+        struct Bullet
+        {
+            public Vector3 position;
+            public float velocity;
+        }
+
+        Texture2D bulletTexture;
+
+        BasicEffect basicEffect;
+
+        VertexPositionColor[] vertices;
+
         List<BasicModel> models = new List<BasicModel>();
+        List<Bullet> bulletList = new List<Bullet>();
 
         FlightShip flightShip;
 
@@ -40,11 +53,10 @@ namespace Final
 
         protected override void LoadContent()
         {
-            //flightShip = new FlightShip(
-                //Game.Content.Load<Model>(@"models\spaceship"), new Vector3(0, 500, 0), GraphicsDevice);
+            flightShip = new FlightShip(
+                Game.Content.Load<Model>(@"airplane\ju-87"), new Vector3(40, 40, -3), GraphicsDevice, .07f);
 
-            models.Add(new BasicModel(
-                Game.Content.Load<Model>(@"CyberTank\CyberTankBlue"), new Vector3(10, 10, 10), GraphicsDevice));
+            bulletTexture = Game.Content.Load<Texture2D>("bullet");
 
             base.LoadContent();
         }
@@ -58,11 +70,11 @@ namespace Final
             // Loop through all models and call Update
             for (int i = 0; i < models.Count; ++i)
             {
-                models[i].Update();
+                models[i].Update(gameTime);
             }
 
-            //flightShip.Update();
-            //((Game1)Game).fpCamera.setChaseTarget(flightShip.GetWorld());
+            flightShip.Update(gameTime);
+            ((Game1)Game).camera.UpdateCamera(flightShip);
 
             base.Update(gameTime);
         }
@@ -72,10 +84,10 @@ namespace Final
             // Loop through and draw each model
             foreach (BasicModel bm in models)
             {
-                bm.Draw(((Game1)Game).fpCamera);
+                bm.Draw(((Game1)Game).camera);
             }
 
-            //flightShip.Draw(((Game1)Game).fpCamera);
+            flightShip.Draw(((Game1)Game).camera);
 
             base.Draw(gameTime);
         }

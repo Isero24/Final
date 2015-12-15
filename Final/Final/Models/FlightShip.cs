@@ -10,67 +10,56 @@ namespace Final
 {
     class FlightShip : BasicModel
     {
-        public FlightShip(Model model, Vector3 position, GraphicsDevice graphics)
-            : base(model, position, graphics)
+        float gameSpeed = 5.0f;
+
+        public FlightShip(Model model, Vector3 position, GraphicsDevice graphics, float scale)
+            : base(model, position, graphics, scale)
         {
             // Constructor
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            Vector2 rot = Vector2.Zero;
+            ProcessKeyboard(gameTime);
+            float moveSpeed = gameTime.ElapsedGameTime.Milliseconds / 50.0f * gameSpeed;
+            MoveForward(moveSpeed);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Left) || Mouse.GetState().X <= graphicsDevice.Viewport.Width / 3)
-            {
-                // Modifying rotation by a turning speed to the left.
-                rot.Y = 1f;
-            }
+            base.Update(gameTime);
+        }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Mouse.GetState().X >= 2 * graphicsDevice.Viewport.Width / 3)
-            {
-                // Modifying rotation by a turning speed to the right.
-                rot.Y = -1f;
-            }
+        private void ProcessKeyboard(GameTime gameTime)
+        {
+            float leftRightRot = 0;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Mouse.GetState().Y <= graphicsDevice.Viewport.Height / 3)
-            {
-                // Modifying rotation by a turning speed upwards.
-                rot.X = 1f;
-            }
+            float turningSpeed = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 10000.0f;
+            turningSpeed *= 1.6f * gameSpeed;
+            KeyboardState keys = Keyboard.GetState();
+            if (keys.IsKeyDown(Keys.D))
+                leftRightRot += turningSpeed;
+            if (keys.IsKeyDown(Keys.A))
+                leftRightRot -= turningSpeed;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Down) || Mouse.GetState().Y >= 2 * graphicsDevice.Viewport.Height / 3)
-            {
-                // Modifying rotation by a turning speed downwards.
-                rot.X = -1f;
-            }
+            float upDownRot = 0;
+            if (keys.IsKeyDown(Keys.S))
+                upDownRot += turningSpeed;
+            if (keys.IsKeyDown(Keys.W))
+                upDownRot -= turningSpeed;
 
-            //Quaternion qRot = Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), xRot);
-            Quaternion qRot = 
-                Quaternion.CreateFromAxisAngle(new Vector3(-1, 0, 0), rot.X * 0.01f) *
-                Quaternion.CreateFromAxisAngle(new Vector3(0, -1, 0), rot.Y * 0.01f);
+            Quaternion additionalRot = Quaternion.CreateFromAxisAngle(new Vector3(0, 0, -1), leftRightRot) * Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), upDownRot);
+            modelRotation *= additionalRot;
+        }
 
-            modelRotation *= qRot;
-
-            // Obtain the models direction
-            Vector3 modelDirection = Vector3.Transform(Vector3.Forward, modelRotation);
-
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                // Moves model forward
-                // Modify models position by a direction applied by a speed modifier.
-                modelPosition += modelDirection * 0.5f;
-            }
-
-            prevMouseState = Mouse.GetState();
-
-            base.Update();
+        private void MoveForward(float speed)
+        {
+            Vector3 addVector = Vector3.Transform(new Vector3(0, 0, -1), modelRotation);
+            modelPosition += addVector * speed;
         }
 
         // Virtual: can be overriden by classes that derive from BasicModel
         // Allows subclasses to apply different scales, rotations, and translations
         public override Matrix GetWorld()
         {
-            return world = Matrix.CreateFromQuaternion(modelRotation) * Matrix.CreateTranslation(modelPosition);
+            return world = Matrix.CreateScale(scale) * Matrix.CreateRotationX(MathHelper.TwoPi) * Matrix.CreateRotationY(MathHelper.TwoPi / 2) * Matrix.CreateFromQuaternion(modelRotation) * Matrix.CreateTranslation(modelPosition);
         }
     }
 }

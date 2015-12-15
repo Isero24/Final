@@ -124,8 +124,6 @@ namespace Final
             // Gets the current height between the cameras current position and the terrain beneath it
             float? currentHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition, Vector3.Down));
 
-            ((Game1)Game).testText = currentHeight.ToString(); // Output testing for height
-
             // Gravity Physics
             if (currentHeight - 50.0f > 0.0f)
             {

@@ -19,7 +19,7 @@ namespace Final
     {
         public Matrix view { get; protected set; }
         public Matrix projection { get; protected set; }
-        public Vector3 cameraPosition { get; protected set; }
+        public Vector3 cameraPosition { get; set; }
 
         protected Vector3 cameraUp;
         protected Vector3 cameraDirection;
@@ -42,7 +42,7 @@ namespace Final
                 MathHelper.PiOver4,
                 (float)Game.Window.ClientBounds.Width /
                 (float)Game.Window.ClientBounds.Height,
-                1, 2000);
+                1, 3000);
 
             Mouse.SetPosition(Game.Window.ClientBounds.Width / 2,
                 game.Window.ClientBounds.Height / 2);
@@ -69,23 +69,21 @@ namespace Final
         /// 
         public virtual void Update()
         {
-            //Vector3 desiredCameraPosition = chasePosition - chaseDirection * offsetDistance;
-
-            //cameraPosition = desiredCameraPosition;
-            //chaseDirection = chasePosition - cameraPosition;
-            //chaseDirection.Normalize();
-
-           // CreateLookAt(cameraPosition, chasePosition, cameraUp);
-
-            //base.Update(gameTime);
+            
         }
 
-        public void setChaseTarget(Matrix targetWorld)
+        public void UpdateCamera(BasicModel model)
         {
-            //chasePosition = targetWorld.Translation;
-            cameraDirection = targetWorld.Forward;
-            cameraUp = targetWorld.Up;
+            Vector3 campos = new Vector3(0, 100, 200);
+            campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(model.modelRotation));
+            campos += model.modelPosition;
+
+            Vector3 camup = new Vector3(0, 1, 0);
+            camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(model.modelRotation));
+
+            CreateLookAt(campos, model.modelPosition, camup);
         }
+
 
         protected void CreateLookAt(Vector3 cameraPosition, Vector3 target, Vector3 up)
         {
