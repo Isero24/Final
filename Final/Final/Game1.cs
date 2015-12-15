@@ -191,7 +191,7 @@ namespace Final
                 }
             }
 
-            Window.Title = String.Format("Terrain Tiles Drawn: {0}", tilesDrawn);
+            Window.Title = String.Format("Terrain Tiles Drawn: {0} - Total Terrain Tiles: {1}", tilesDrawn, terrainPieces.Count);
 
             //spriteBatch.Begin();
             //spriteBatch.DrawString(font, testText, Vector2.Zero, Color.Red);
@@ -241,7 +241,43 @@ namespace Final
                         heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
                         tempData.SetData(data);
                         terrainPieces.Add(new Terrain(this));
-                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * a), splitNum - y + (splitNum * a), segmentSize - 1);
+                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * 0), splitNum - y + (splitNum * 0), segmentSize - 1);
+                    }
+                }
+
+                for (int x = 0; x <= splitNum; x++)
+                {
+                    for (int y = 0; y <= splitNum; y++)
+                    {
+                        sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
+                        heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
+                        tempData.SetData(data);
+                        terrainPieces.Add(new Terrain(this));
+                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * 1), splitNum - y + (splitNum * 0), segmentSize - 1);
+                    }
+                }
+
+                for (int x = 0; x <= splitNum; x++)
+                {
+                    for (int y = 0; y <= splitNum; y++)
+                    {
+                        sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
+                        heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
+                        tempData.SetData(data);
+                        terrainPieces.Add(new Terrain(this));
+                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * 1), splitNum - y + (splitNum * 1), segmentSize - 1);
+                    }
+                }
+
+                for (int x = 0; x <= splitNum; x++)
+                {
+                    for (int y = 0; y <= splitNum; y++)
+                    {
+                        sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
+                        heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
+                        tempData.SetData(data);
+                        terrainPieces.Add(new Terrain(this));
+                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * 0), splitNum - y + (splitNum * 1), segmentSize - 1);
                     }
                 }
             }

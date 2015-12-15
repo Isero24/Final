@@ -42,7 +42,7 @@ namespace Final
                 MathHelper.PiOver4,
                 (float)Game.Window.ClientBounds.Width /
                 (float)Game.Window.ClientBounds.Height,
-                1, 1000);
+                1, 2000);
 
             Mouse.SetPosition(Game.Window.ClientBounds.Width / 2,
                 game.Window.ClientBounds.Height / 2);
