@@ -33,7 +33,12 @@ namespace Final
 
         public string testText = "null";
 
+        List<Terrain> terrainPieces;
+
         public Terrain terrain;
+        public Terrain terrain2;
+        public Terrain terrain3;
+        public Terrain terrain4;
 
         public FirstPersonCamera fpCamera { get; protected set; }
         
@@ -60,9 +65,11 @@ namespace Final
             modelManager = new ModelManager(this);
             Components.Add(modelManager);
 
-            fpCamera = new FirstPersonCamera(this, new Vector3(300, 50, 300),
-                new Vector3(300, 0, 100), Vector3.Up);
+            fpCamera = new FirstPersonCamera(this, new Vector3(100, 800, -100),
+                new Vector3(0, 0, 0), Vector3.Up);
             Components.Add(fpCamera);
+
+            terrainPieces = new List<Terrain>();
 
             base.Initialize();
         }
@@ -73,7 +80,7 @@ namespace Final
         /// </summary>
         protected override void LoadContent()
         {
-            _rsDefault.CullMode = CullMode.CullCounterClockwiseFace;
+            _rsDefault.CullMode = CullMode.None;
             _rsDefault.FillMode = FillMode.Solid;
 
             _rsWire.CullMode = CullMode.CullCounterClockwiseFace;
@@ -84,8 +91,18 @@ namespace Final
 
             _device = graphics.GraphicsDevice;
 
-            terrain = new Terrain(this);
-            terrain.load(@"map\Size256\hmBlack", 0, 0, 1.0f, 1.0f);
+            // Operation split large height maps into smaller versions
+            // We want to generate our terrain segments in sizes of 256
+            // What I'm thinking is have this utilize map sizes that our multipes of 256 segments
+            // Could have a map size of 256, or a map size of 1028 which is four 256 size maps.
+            // Could have a map size of 4096 which has four 1028 segments which each have four 256 size maps.
+
+            // Test 1: 512 which is broken up into four map segments.
+            // Load initial heightmap into a variable
+            Texture2D heightmap = Content.Load<Texture2D>(@"map\Size128\heightmap4");
+            generateTerrain(heightmap);
+
+            
 
             font = Content.Load<SpriteFont>(@"SpriteFont1");
 
@@ -94,6 +111,7 @@ namespace Final
 
             //_quadTree = new QuadTree(Vector3.Zero, heightMap, fpCamera.view, fpCamera.projection, _device, 1);
             //_quadTree.Effect.Texture = Content.Load<Texture2D>(@"map\Bitmap1");
+
 
             base.LoadContent();
 
@@ -141,13 +159,17 @@ namespace Final
 
             _previousKeyboardState = currentKeyboardState;
 
-            terrain.Update(gameTime);
+            foreach (Terrain t in terrainPieces)
+            {
+                t.Update(gameTime);
+            }
 
             /*_quadTree.View = fpCamera.view;
             _quadTree.Projection = fpCamera.projection;
             _quadTree.CameraPosition = fpCamera.cameraPosition;
             _quadTree.Update(gameTime);*/
 
+            //Window.Title = String.Format("Terrain Tiles: {0}", terrainPieces.Count);
             base.Update(gameTime);
         }
 
@@ -159,7 +181,17 @@ namespace Final
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            terrain.Draw(gameTime);
+            int tilesDrawn = 0;
+            foreach(Terrain t in terrainPieces)
+            {
+                if (t.isVisible(new BoundingFrustum(fpCamera.view * fpCamera.projection)))
+                {
+                    t.Draw(gameTime);
+                    tilesDrawn++;
+                }
+            }
+
+            Window.Title = String.Format("Terrain Tiles Drawn: {0}", tilesDrawn);
 
             //spriteBatch.Begin();
             //spriteBatch.DrawString(font, testText, Vector2.Zero, Color.Red);
@@ -172,6 +204,47 @@ namespace Final
 
             base.Draw(gameTime);
 
+        }
+
+        protected void generateTerrain(Texture2D heightmap)
+        {
+
+            Texture2D tempData;
+
+            Terrain tempTerrain = new Terrain(this);
+
+            Rectangle sourceRectangle;
+
+            int segmentSize = 256 / 2;
+
+            tempData = new Texture2D(GraphicsDevice, segmentSize, segmentSize);
+
+            // Create a color variable array that will hold the pixel color of the new segment
+            Color[] data = new Color[segmentSize * segmentSize];
+
+            int hmSize = heightmap.Width;
+            int splitNum = 0;
+            while (hmSize > segmentSize)
+            {
+                hmSize /= 2;
+                splitNum++;
+            }
+
+            for (int a = 0; a <= 0; a++)
+            {
+                splitNum = 13;
+                for (int x = 0; x <= splitNum; x++)
+                {
+                    for (int y = 0; y <= splitNum; y++)
+                    {
+                        sourceRectangle = new Rectangle((segmentSize - 1) * x, (segmentSize - 1) * y, segmentSize, segmentSize);
+                        heightmap.GetData(0, sourceRectangle, data, 0, data.Length);
+                        tempData.SetData(data);
+                        terrainPieces.Add(new Terrain(this));
+                        terrainPieces.Last().load(tempData, 0, 0, 1.0f, 1.0f, x + (splitNum * a), splitNum - y + (splitNum * a), segmentSize - 1);
+                    }
+                }
+            }
         }
     }
 }

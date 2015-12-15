@@ -75,14 +75,14 @@ namespace Final
             // Checks for null values for out of bounds checking
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                futureHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition + cameraDirection * speed, Vector3.Down));
+                //futureHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition + cameraDirection * speed, Vector3.Down));
 
                 //if (futureHeight - 25 > 0 && futureHeight != null)
                     cameraPosition += cameraDirection * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                futureHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition - cameraDirection * speed, Vector3.Down));
+                //futureHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition - cameraDirection * speed, Vector3.Down));
 
                 //if (futureHeight - 25 > 0 && futureHeight != null)
                     cameraPosition -= cameraDirection * speed;
@@ -104,14 +104,14 @@ namespace Final
             // Checks for null values for out of bounds checking
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                futureHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition + Vector3.Cross(cameraUp, cameraDirection) * speed, Vector3.Down));
+                //futureHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition + Vector3.Cross(cameraUp, cameraDirection) * speed, Vector3.Down));
 
                 //if (futureHeight - 25 > 0 && futureHeight != null)
                     cameraPosition += Vector3.Cross(cameraUp, cameraDirection) * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                futureHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition - Vector3.Cross(cameraUp, cameraDirection) * speed, Vector3.Down));
+                //futureHeight = ((Game1)Game).terrain.Intersects(new Ray(cameraPosition - Vector3.Cross(cameraUp, cameraDirection) * speed, Vector3.Down));
 
                 //if (futureHeight - 25 > 0 && futureHeight != null)
                     cameraPosition -= Vector3.Cross(cameraUp, cameraDirection) * speed;

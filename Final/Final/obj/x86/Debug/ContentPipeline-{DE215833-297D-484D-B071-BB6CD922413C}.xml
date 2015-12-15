@@ -7,11 +7,11 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\models\spaceship.xnb</Output>
-      <Time>2015-11-02T11:34:50.2053478-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\models\spaceship.xnb</Output>
+      <Time>2015-12-14T00:02:05.4640727-06:00</Time>
       <Dependency>
-        <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\models\spaceship_0.xml</Key>
-        <Value>2015-12-13T02:14:58.8173285-05:00</Value>
+        <Key>C:\Users\Isero\Documents\GitHub\Final\Final\Final\obj\x86\Debug\models\spaceship_0.xml</Key>
+        <Value>2015-12-14T08:04:27.3470925-06:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -20,8 +20,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\heightmap.xnb</Output>
-      <Time>2015-11-10T21:26:41.8094052-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\heightmap.xnb</Output>
+      <Time>2015-12-14T00:02:05.3741751-06:00</Time>
     </Item>
     <Item>
       <Source>map\grass.dds</Source>
@@ -29,8 +29,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\grass.xnb</Output>
-      <Time>2015-11-12T17:35:20.1164651-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\grass.xnb</Output>
+      <Time>2015-12-14T00:02:05.3671742-06:00</Time>
     </Item>
     <Item>
       <Source>map\testHeightMap.png</Source>
@@ -38,8 +38,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\testHeightMap.xnb</Output>
-      <Time>2015-11-12T18:11:08.4019309-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\testHeightMap.xnb</Output>
+      <Time>2015-12-14T00:02:05.4049304-06:00</Time>
     </Item>
     <Item>
       <Source>map\testTexture.png</Source>
@@ -47,8 +47,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\testTexture.xnb</Output>
-      <Time>2015-11-12T18:16:10.9553301-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\testTexture.xnb</Output>
+      <Time>2015-12-14T00:02:05.4099317-06:00</Time>
     </Item>
     <Item>
       <Source>map\testTexture2.png</Source>
@@ -56,17 +56,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\testTexture2.xnb</Output>
-      <Time>2015-11-12T19:36:21.0318773-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\testTexture2.xnb</Output>
+      <Time>2015-12-14T00:02:05.4209321-06:00</Time>
     </Item>
     <Item>
-      <Source>map\heightmapGreyscale.bmp</Source>
-      <Name>map\heightmapGreyscale</Name>
+      <Source>map\Size512\hmV2.bmp</Source>
+      <Name>map\Size512\hmV2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\heightmapGreyscale.xnb</Output>
-      <Time>2015-11-17T06:58:20.3592745-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size512\hmV2.xnb</Output>
+      <Time>2015-12-14T00:02:05.3949309-06:00</Time>
     </Item>
     <Item>
       <Source>map\white.dds</Source>
@@ -74,8 +74,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\white.xnb</Output>
-      <Time>2015-11-30T15:49:49.9200405-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\white.xnb</Output>
+      <Time>2015-12-14T00:02:05.4370711-06:00</Time>
     </Item>
     <Item>
       <Source>map\Bitmap1.bmp</Source>
@@ -83,8 +83,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\Bitmap1.xnb</Output>
-      <Time>2015-11-30T15:50:15.226126-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Bitmap1.xnb</Output>
+      <Time>2015-12-14T00:02:05.3261726-06:00</Time>
     </Item>
     <Item>
       <Source>map\hmSmall.bmp</Source>
@@ -92,42 +92,26 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\hmSmall.xnb</Output>
-      <Time>2015-12-12T23:27:53.6384838-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\hmSmall.xnb</Output>
+      <Time>2015-12-14T00:38:17.0939649-06:00</Time>
     </Item>
     <Item>
-      <Source>map\hm.bmp</Source>
-      <Name>map\hm</Name>
+      <Source>map\Size1024\hmV2.png</Source>
+      <Name>map\Size1024\hmV2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\hm.xnb</Output>
-      <Time>2015-12-13T01:04:19.4152468-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size1024\hmV2.xnb</Output>
+      <Time>2015-12-14T04:40:43.6135358-06:00</Time>
     </Item>
     <Item>
-      <Source>map\hmLarge.png</Source>
-      <Name>map\hmLarge</Name>
+      <Source>map\Size512\hmBlack.bmp</Source>
+      <Name>map\Size512\hmBlack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\hmLarge.xnb</Output>
-      <Time>2015-12-13T02:00:21.2507691-05:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2015-11-12T23:41:54.1767979-05:00</Time>
-    </Item>
-    <Item>
-      <Source>models\spaceship.x</Source>
-      <Importer>XImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\models\spaceship_0.xml</Output>
-      <Time>2015-11-02T11:34:50.2053478-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size512\hmBlack.xnb</Output>
+      <Time>2015-12-14T00:38:17.0449634-06:00</Time>
     </Item>
     <Item>
       <Source>CyberTank\Tex_Tank_Cyber_Blue.png</Source>
@@ -135,8 +119,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Blue.xnb</Output>
-      <Time>2015-12-13T20:58:27.7511749-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Blue.xnb</Output>
+      <Time>2015-12-14T00:38:16.8589534-06:00</Time>
     </Item>
     <Item>
       <Source>CyberTank\Tex_Tank_Cyber_Red.png</Source>
@@ -144,8 +128,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Red.xnb</Output>
-      <Time>2015-12-13T20:58:28.174212-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Red.xnb</Output>
+      <Time>2015-12-14T00:38:16.8619534-06:00</Time>
     </Item>
     <Item>
       <Source>CyberTank\Tex_Tank_Cyber_Yellow.png</Source>
@@ -153,8 +137,134 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Yellow.xnb</Output>
-      <Time>2015-12-13T20:58:28.6312381-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\CyberTank\Tex_Tank_Cyber_Yellow.xnb</Output>
+      <Time>2015-12-14T00:38:16.8829551-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size128\hmBlack128.bmp</Source>
+      <Name>map\Size128\hmBlack128</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size128\hmBlack128.xnb</Output>
+      <Time>2015-12-14T00:38:16.895955-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size256\hmBlack.bmp</Source>
+      <Name>map\Size256\hmBlack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size256\hmBlack.xnb</Output>
+      <Time>2015-12-14T00:38:16.903955-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size512\hmV1.png</Source>
+      <Name>map\Size512\hmV1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size512\hmV1.xnb</Output>
+      <Time>2015-12-14T01:25:03.5358082-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size1024\hmV1.bmp</Source>
+      <Name>map\Size1024\hmV1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size1024\hmV1.xnb</Output>
+      <Time>2015-12-14T04:32:58.9384087-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\hmV2.jpg</Source>
+      <Name>map\hmV2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\hmV2.xnb</Output>
+      <Time>2015-12-14T05:05:24.3925228-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size2048\hmV1p.png</Source>
+      <Name>map\Size2048\hmV1p</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size2048\hmV1p.xnb</Output>
+      <Time>2015-12-14T05:32:25.9779429-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size2048\hmV1b.bmp</Source>
+      <Name>map\Size2048\hmV1b</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size2048\hmV1b.xnb</Output>
+      <Time>2015-12-14T05:37:52.4115843-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size2048\hmV1p2.png</Source>
+      <Name>map\Size2048\hmV1p2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size2048\hmV1p2.xnb</Output>
+      <Time>2015-12-14T05:50:27.450613-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size1024\testhm.png</Source>
+      <Name>map\Size1024\testhm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size1024\testhm.xnb</Output>
+      <Time>2015-12-14T06:10:05.8628786-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size128\heightmap.bmp</Source>
+      <Name>map\Size128\heightmap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size128\heightmap.xnb</Output>
+      <Time>2015-12-14T06:32:40.9076225-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size128\heightmap2.bmp</Source>
+      <Name>map\Size128\heightmap2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size128\heightmap2.xnb</Output>
+      <Time>2015-12-14T06:34:20.8816022-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size128\heightmap3.bmp</Source>
+      <Name>map\Size128\heightmap3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size128\heightmap3.xnb</Output>
+      <Time>2015-12-14T06:39:49.6101389-06:00</Time>
+    </Item>
+    <Item>
+      <Source>map\Size128\heightmap4.png</Source>
+      <Name>map\Size128\heightmap4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\map\Size128\heightmap4.xnb</Output>
+      <Time>2015-12-14T06:42:36.0887588-06:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2015-12-14T00:02:05.2981709-06:00</Time>
     </Item>
     <Item>
       <Source>CyberTank\CyberTankBlue.FBX</Source>
@@ -162,20 +272,27 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.xnb</Output>
-      <Time>2015-12-13T21:41:57.6218766-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.xnb</Output>
+      <Time>2015-12-14T00:38:16.8379513-06:00</Time>
       <Dependency>
-        <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\CyberTank\CyberTankBlue_0.xml</Key>
-        <Value>2015-12-13T21:41:59.4704498-05:00</Value>
+        <Key>C:\Users\Isero\Documents\GitHub\Final\Final\Final\obj\x86\Debug\CyberTank\CyberTankBlue_0.xml</Key>
+        <Value>2015-12-14T08:04:33.9243333-06:00</Value>
       </Dependency>
-      <Request>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue_0.xnb</Request>
+      <Request>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>models\spaceship.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\obj\x86\Debug\models\spaceship_0.xml</Output>
+      <Time>2015-12-14T00:02:05.4640727-06:00</Time>
     </Item>
     <Item>
       <Source>CyberTank\CyberTankBlue.FBX</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\CyberTank\CyberTankBlue_0.xml</Output>
-      <Time>2015-12-13T21:41:57.6218766-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\obj\x86\Debug\CyberTank\CyberTankBlue_0.xml</Output>
+      <Time>2015-12-14T00:38:16.8379513-06:00</Time>
     </Item>
     <Item>
       <Source>CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue.png</Source>
@@ -190,35 +307,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue_0.xnb</Output>
-      <Time>2015-12-13T21:01:29.8625453-05:00</Time>
-    </Item>
-    <Item>
-      <Source>map\hmBlack512.bmp</Source>
-      <Name>map\hmBlack512</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\hmBlack512.xnb</Output>
-      <Time>2015-11-17T06:57:37.6567508-05:00</Time>
-    </Item>
-    <Item>
-      <Source>map\Size128\hmBlack128.bmp</Source>
-      <Name>map\Size128\hmBlack128</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\Size128\hmBlack128.xnb</Output>
-      <Time>2015-12-13T21:15:07.3440728-05:00</Time>
-    </Item>
-    <Item>
-      <Source>map\Size256\hmBlack.bmp</Source>
-      <Name>map\Size256\hmBlack</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\map\Size256\hmBlack.xnb</Output>
-      <Time>2015-12-13T21:16:20.3838445-05:00</Time>
+      <Output>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\CyberTank\CyberTankBlue.fbm\Tex_Tank_Cyber_Blue_0.xnb</Output>
+      <Time>2015-12-14T00:38:16.8539516-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -227,39 +317,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\FinalContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Brian.DESKTOP-4MG25OG\Documents\Visual Studio 2015\Projects\Final\Final\Final\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Isero\Documents\GitHub\Final\Final\FinalContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Isero\Documents\GitHub\Final\Final\Final\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Isero\Documents\GitHub\Final\Final\Final\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Isero\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2011-09-01T19:22:30-04:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2011-09-01T19:22:30-04:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2011-09-01T19:22:30-04:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2011-09-01T19:22:30-04:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2011-09-01T19:22:30-04:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2011-09-01T19:22:30-04:00</Value>
+        <Value>2011-09-01T17:22:30-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2015-09-24T04:11:56.659563-04:00</Value>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2015-12-14T00:20:40.2837353-06:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

@@ -21,7 +21,7 @@ namespace Final
         //byte[] heightMap;
         Color[] heightMap;
         int numVertices;
-        int numTriangles;
+        public int numTriangles;
         bool isInitialized;
         VertexBuffer vb;
         IndexBuffer ib;
@@ -29,6 +29,8 @@ namespace Final
         Texture2D heightMapTexture;
         Texture2D terrainTexture;
         VertexDeclaration vertexDeclaration;
+
+        public BoundingBox bounds;
 
         ushort[] indices;
 
@@ -45,6 +47,11 @@ namespace Final
             }
         }
 
+        public bool isVisible (BoundingFrustum viewFrustum)
+        {
+            return bounds.Intersects(viewFrustum);
+        }
+
         public Terrain(Game game) : base(game)
         {
             isInitialized = false;
@@ -56,10 +63,13 @@ namespace Final
             base.Initialize();
         }
 
-        public void load(string heightmapFileName, int vertexCountX, int vertexCountZ, float blockScale, float heightScale)
+        // This ones sends a height map string location that is then saved into a texture2d
+        public void load(string heightmapFileName, int vertexCountX, int vertexCountZ, float blockScale, float heightScale, int x, int y, float offsetAmount)
         {
             if (!isInitialized)
                 Initialize();
+
+            var offset = new Vector3(x * offsetAmount, 0, -y * offsetAmount);
 
             effect = new BasicEffect(GraphicsDevice);
 
@@ -74,14 +84,42 @@ namespace Final
             this.heightScale = heightScale;
 
             // Generate terrain mesh
-            GenerateTerrainMesh();
+            GenerateTerrainMesh(offset);
 
             // Load effect
             //effect = new TerrainEffect 
-            terrainTexture = Game.Content.Load<Texture2D>(@"map\Bitmap1");
+            terrainTexture = Game.Content.Load<Texture2D>(@"map\grass");
         }
 
-        private void GenerateTerrainMesh()
+        // This one sends a hightmap already as a texture2D
+        public void load(Texture2D heightmapFile, int vertexCountX, int vertexCountZ, float blockScale, float heightScale, int x, int y, float offsetAmount)
+        {
+            if (!isInitialized)
+                Initialize();
+
+            var offset = new Vector3(x * offsetAmount * blockScale, 0, -y * offsetAmount * blockScale);
+
+            effect = new BasicEffect(GraphicsDevice);
+
+            heightMapTexture = heightmapFile;
+            int heightMapSize = heightMapTexture.Width * heightMapTexture.Height;
+            heightMap = new Color[heightMapSize];
+            heightMapTexture.GetData<Color>(heightMap);
+
+            this.vertexCountX = heightMapTexture.Width;
+            this.vertexCountZ = heightMapTexture.Height;
+            this.blockScale = blockScale;
+            this.heightScale = heightScale;
+
+            // Generate terrain mesh
+            GenerateTerrainMesh(offset);
+
+            // Load effect
+            //effect = new TerrainEffect 
+            terrainTexture = Game.Content.Load<Texture2D>(@"map\grass");
+        }
+
+        private void GenerateTerrainMesh(Vector3 offset)
         {
             numVertices = vertexCountX * vertexCountZ;
             numTriangles = (vertexCountX - 1) * (vertexCountZ - 1) * 2;
@@ -89,7 +127,9 @@ namespace Final
             ushort[] indices = GenerateTerrainIndices();
             this.indices = indices;
 
-            VertexPositionNormalTexture[] vertices = GenerateTerrainVertices();
+            VertexPositionNormalTexture[] vertices = GenerateTerrainVertices(offset);
+
+            bounds = new BoundingBox(vertices[0].Position, vertices[vertices.Length - 1].Position);
 
             CalculateNormals(vertices);
 
@@ -134,7 +174,7 @@ namespace Final
             return indices;
         }
 
-        private VertexPositionNormalTexture[] GenerateTerrainVertices()
+        private VertexPositionNormalTexture[] GenerateTerrainVertices(Vector3 offset)
         {
             float halfTerrainWidth = (vertexCountX - 1) * blockScale * .5f;
             float halfTerrainDepth = (vertexCountZ - 1) * blockScale * .5f;
@@ -153,7 +193,7 @@ namespace Final
                 tu = 0.0f;
                 for (float j = -halfTerrainWidth; j <= halfTerrainWidth; j += blockScale)
                 {
-                    vertices[vertexCount].Position = new Vector3(j, heightMap[vertexCount].R * heightScale, i);
+                    vertices[vertexCount].Position = new Vector3(j, heightMap[vertexCount].R * heightScale, i) + offset;
                     vertices[vertexCount].TextureCoordinate = new Vector2(tu, tv);
 
                     tu += tuDerivative;
@@ -221,7 +261,7 @@ namespace Final
             GraphicsDevice.SetVertexBuffer(vb); // Set vertices
             GraphicsDevice.Indices = ib; // Set indices
 
-            GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
+            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
 
             foreach (EffectPass CurrentPass in effect.CurrentTechnique.Passes)
             {
