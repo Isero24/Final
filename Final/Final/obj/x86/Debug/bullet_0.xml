@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Graphics="Microsoft.Xna.Framework.Content.Pipeline.Graphics" xmlns:Framework="Microsoft.Xna.Framework">
+  <Asset Type="Graphics:NodeContent">
+    <Name>Root</Name>
+    <Identity>
+      <SourceFilename>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\FinalContent\bullet.x</SourceFilename>
+      <SourceTool>XImporter</SourceTool>
+    </Identity>
+    <Transform>1 0 0 0 0 0 1 0 0 -1 0 0 0 0 0 1</Transform>
+    <Children>
+      <Child>
+        <Name>bullet</Name>
+        <Transform>1 0 0 0 0 0 -1 0 0 1 0 0 1.92263 0 0 1</Transform>
+        <Children>
+          <Child Type="Graphics:MeshContent">
+            <Name></Name>
+            <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
+            <Positions>-1.966556 0 -0.009437 1.873724 0.093991 0.021102 1.873724 0 0.089391 1.873724 0.05809 -0.089391 1.873724 -0.05809 -0.089391 1.873724 -0.093991 0.021102 1.933974 0.046996 0.005833 1.933974 0 0.039977 1.933974 0.029045 -0.049414 1.933974 -0.029045 -0.049414 1.933974 -0.046996 0.005833 1.966556 0 -0.009437</Positions>
+            <Geometry>
+              <Batch>
+                <Material>#Resource1</Material>
+                <Indices>0 1 2 3 4 5 6 7 4 8 9 7 10 2 9 2 11 12 2 1 11 5 13 14 5 4 13 4 15 13 4 7 15 7 16 15 7 9 16 9 12 16 9 2 12 17 12 11 17 14 13 17 13 15 17 15 16 17 16 12</Indices>
+                <Vertices>
+                  <PositionIndices>0 1 2 0 3 1 0 4 0 5 0 6 7 8 6 9 10 11</PositionIndices>
+                  <Channels>
+                    <VertexChannel Name="Normal0" ElementType="Framework:Vector3">-1 0 0 0.29032445 0.9100966 0.295695484 0.290328741 0 0.956927 -1 0 0 0.290326983 0.5624637 -0.7741736 0.29032445 0.9100966 0.295695484 -1 0 0 0.290326983 -0.5624637 -0.7741736 -1 0 0 0.29032445 -0.9100966 0.295695484 -1 0 0 0.715072453 0.6648368 0.216017082 0.715073168 0 0.6990496 0.7150689 0.4108824 -0.565554738 0.715072453 0.6648368 0.216017082 0.7150689 -0.4108824 -0.565554738 0.715072453 -0.6648368 0.216017082 1 0 0</VertexChannel>
+                    <VertexChannel Name="TextureCoordinate0" ElementType="Framework:Vector2">0.547307 0.457473 0.839364 0.434822 0.839364 0.457473 0.547307 0.548077 0.839364 0.525426 0.839364 0.548077 0.547307 0.525426 0.839364 0.502775 0.547307 0.502775 0.839364 0.480124 0.547307 0.480124 0.839364 0.434822 0.839364 0.457473 0.839364 0.525426 0.839364 0.548077 0.839364 0.502775 0.839364 0.480124 0.839364 0.485787</VertexChannel>
+                  </Channels>
+                </Vertices>
+              </Batch>
+            </Geometry>
+          </Child>
+        </Children>
+      </Child>
+    </Children>
+  </Asset>
+  <Resources>
+    <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
+      <Identity>
+        <SourceFilename>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\FinalContent\bullet.x</SourceFilename>
+        <SourceTool>XImporter</SourceTool>
+      </Identity>
+      <OpaqueData>
+        <Data Key="DiffuseColor" Type="Framework:Vector3">0.4 0.4 0</Data>
+        <Data Key="SpecularColor" Type="Framework:Vector3">0 0 0</Data>
+        <Data Key="EmissiveColor" Type="Framework:Vector3">0 0 0</Data>
+        <Data Key="Alpha" Type="float">1</Data>
+        <Data Key="SpecularPower" Type="float">19.6078434</Data>
+      </OpaqueData>
+    </Resource>
+  </Resources>
+</XnaContent>

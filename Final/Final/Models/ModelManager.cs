@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-
 namespace Final
 {
     /// <summary>
@@ -17,27 +16,21 @@ namespace Final
     /// </summary>
     public class ModelManager : Microsoft.Xna.Framework.DrawableGameComponent
     {
-        struct Bullet
-        {
-            public Vector3 position;
-            public float velocity;
-        }
+        public List<BasicModel> models = new List<BasicModel>();
+        public List<FlightShip> playerVehicles = new List<FlightShip>();
+        public List<Bullet> bulletList = new List<Bullet>();
 
-        Texture2D bulletTexture;
+        GraphicsDevice graphics;
+        Camera camera;
+        Model bulletTexture;
 
-        BasicEffect basicEffect;
+        BasicEffect effect;
 
-        VertexPositionColor[] vertices;
-
-        List<BasicModel> models = new List<BasicModel>();
-        List<Bullet> bulletList = new List<Bullet>();
-
-        FlightShip flightShip;
-
-        public ModelManager(Game game)
+        public ModelManager(Game game, Camera c)
             : base(game)
         {
-            // TODO: Construct any child components here
+            graphics = ((Game1)Game).GraphicsDevice;
+            camera = c;
         }
 
         /// <summary>
@@ -53,10 +46,8 @@ namespace Final
 
         protected override void LoadContent()
         {
-            flightShip = new FlightShip(
-                Game.Content.Load<Model>(@"airplane\ju-87"), new Vector3(40, 40, -3), GraphicsDevice, .07f);
-
-            bulletTexture = Game.Content.Load<Texture2D>("bullet");
+            bulletTexture = Game.Content.Load<Model>("bullet");
+            effect = new BasicEffect(graphics);
 
             base.LoadContent();
         }
@@ -66,15 +57,58 @@ namespace Final
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
-        {
+        {           
             // Loop through all models and call Update
             for (int i = 0; i < models.Count; ++i)
             {
                 models[i].Update(gameTime);
             }
 
-            flightShip.Update(gameTime);
-            ((Game1)Game).camera.UpdateCamera(flightShip);
+            foreach (Bullet bullet in bulletList)
+            {
+                bullet.Update(gameTime);
+            }
+            bulletList.RemoveAll(b => !b.isAlive);
+
+            foreach (FlightShip flightShip in playerVehicles)
+            {
+                flightShip.Update(gameTime);
+                if (flightShip.hasFired)
+                {
+                    bulletList.Add(new Bullet(bulletTexture, playerVehicles[0].modelPosition, 15f, playerVehicles[0].modelRotation, flightShip.owner));
+                    flightShip.hasFired = false;
+                }
+            }
+
+            // Check for bullet vs flightship collisions
+            foreach (Bullet b in bulletList)
+            {
+                foreach (FlightShip fs in playerVehicles)
+                {
+                    if (fs.getBoundingSphere().Intersects(b.getBoundingSphere()) && !(fs.owner.Equals(b.owner)))
+                    {
+                        b.isAlive = false;
+                        
+                        if (fs.shield > 0)
+                        {
+                            fs.shield -= b.damage;
+                        }
+                        else
+                        {
+                            fs.health -= b.damage;
+
+                            if (fs.health <= 0)
+                            {
+                                fs.isAlive = false;
+                            }
+                        }
+
+                        ((Game1)Game).Window.Title = String.Format("Is enemy defeated?: {0}", fs.isAlive);
+
+                    }
+                }
+            }
+            bulletList.RemoveAll(b => !b.isAlive);
 
             base.Update(gameTime);
         }
@@ -84,10 +118,18 @@ namespace Final
             // Loop through and draw each model
             foreach (BasicModel bm in models)
             {
-                bm.Draw(((Game1)Game).camera);
+                bm.Draw(camera, graphics);
             }
 
-            flightShip.Draw(((Game1)Game).camera);
+            foreach (FlightShip fs in playerVehicles)
+            {
+                fs.Draw(camera, graphics);
+            }
+
+            foreach (Bullet b in bulletList)
+            {
+                b.Draw(camera, graphics);
+            }
 
             base.Draw(gameTime);
         }

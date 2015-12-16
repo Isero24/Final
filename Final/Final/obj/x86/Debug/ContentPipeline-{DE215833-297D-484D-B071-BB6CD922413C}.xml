@@ -488,13 +488,12 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\ju-87.xnb</Output>
-      <Time>2015-12-15T02:08:19.268741-05:00</Time>
+      <Time>2015-12-16T00:19:14.8707559-05:00</Time>
       <Dependency>
         <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\obj\x86\Debug\airplane\ju-87_0.xml</Key>
-        <Value>2015-12-15T02:08:20.2748446-05:00</Value>
+        <Value>2015-12-16T00:19:18.0792055-05:00</Value>
       </Dependency>
       <Request>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\diff_0.xnb</Request>
-      <Request>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\bump_0.xnb</Request>
     </Item>
     <Item>
       <Source>Sample_Ship.fbx</Source>
@@ -514,7 +513,7 @@
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\obj\x86\Debug\airplane\ju-87_0.xml</Output>
-      <Time>2015-12-15T02:08:19.268741-05:00</Time>
+      <Time>2015-12-16T00:19:14.8707559-05:00</Time>
     </Item>
     <Item>
       <Source>airplane\diff.jpg</Source>
@@ -558,50 +557,44 @@
       <Time>2015-12-15T00:40:23.2389288-05:00</Time>
     </Item>
     <Item>
-      <Source>airplane\ju-87 - Copy.fbx</Source>
-      <Name>airplane\ju-87 - Copy</Name>
-      <Importer>FbxImporter</Importer>
+      <Source>bullet.x</Source>
+      <Name>bullet</Name>
+      <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\ju-87 - Copy.xnb</Output>
-      <Time>2015-12-15T00:49:56.8762054-05:00</Time>
-      <Dependency>
-        <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\obj\x86\Debug\airplane\ju-87 - Copy_0.xml</Key>
-        <Value>2015-12-15T00:53:18.1502348-05:00</Value>
-      </Dependency>
-      <Request>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\diff_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>airplane\ju-87 - Copy.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\obj\x86\Debug\airplane\ju-87 - Copy_0.xml</Output>
-      <Time>2015-12-15T00:49:56.8762054-05:00</Time>
-    </Item>
-    <Item>
-      <Source>airplane\bump.jpg</Source>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Parameters>
-        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
-        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
-        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
-        <Data Key="GenerateMipmaps" Type="bool">true</Data>
-        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
-        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
-      </Parameters>
-      <Options>None</Options>
-      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\bump_0.xnb</Output>
-      <Time>2015-12-15T00:16:33.1464004-05:00</Time>
-    </Item>
-    <Item>
-      <Source>bullet.bmp</Source>
-      <Name>bullet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
       <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\bullet.xnb</Output>
-      <Time>2015-12-15T02:57:51.7662553-05:00</Time>
+      <Time>2015-12-16T03:04:06.2515246-05:00</Time>
+      <Dependency>
+        <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\obj\x86\Debug\bullet_0.xml</Key>
+        <Value>2015-12-16T03:21:44.9303986-05:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>rocket.x</Source>
+      <Name>rocket</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\rocket.xnb</Output>
+      <Time>2015-12-16T03:04:24.7143523-05:00</Time>
+      <Dependency>
+        <Key>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\obj\x86\Debug\rocket_0.xml</Key>
+        <Value>2015-12-16T03:21:45.0634213-05:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>bullet.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\obj\x86\Debug\bullet_0.xml</Output>
+      <Time>2015-12-16T03:04:06.2515246-05:00</Time>
+    </Item>
+    <Item>
+      <Source>rocket.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\obj\x86\Debug\rocket_0.xml</Output>
+      <Time>2015-12-16T03:04:24.7143523-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

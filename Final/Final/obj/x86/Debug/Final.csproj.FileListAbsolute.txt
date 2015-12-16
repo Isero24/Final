@@ -147,8 +147,7 @@ C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\
 C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\diff_0.xnb
 C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\sh3.xnb
 C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\sh3_s.xnb
-C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\ju-87 - Copy.xnb
-C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\airplane\bump_0.xnb
 C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\bullet.xnb
 C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Microsoft.Xna.Framework.Net.dll
 C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Microsoft.Xna.Framework.Net.xml
+C:\Users\Brian.DESKTOP-4MG25OG\Documents\GitHub\Final\Final\Final\bin\x86\Debug\Content\rocket.xnb

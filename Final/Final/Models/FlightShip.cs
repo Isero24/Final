@@ -8,26 +8,50 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Final
 {
-    class FlightShip : BasicModel
+    public class FlightShip : BasicModel
     {
-        float gameSpeed = 5.0f;
+        public bool hasFired;
+        public bool isAlive;
+        public float health;
+        public float shield;
+        public string owner;
 
-        public FlightShip(Model model, Vector3 position, GraphicsDevice graphics, float scale)
-            : base(model, position, graphics, scale)
+        static float gameSpeed = 5.0f;
+
+        float timeBetweenShots;
+        bool isStationary;
+
+        public FlightShip(Model model, Vector3 position, float scale, bool isStationary, string ownerName)
+            : base(model, position, scale)
         {
             // Constructor
+            this.isStationary = isStationary;
+            owner = ownerName;
+
+            timeBetweenShots = 0;
+            hasFired = false;
+            isAlive = true;
+            health = 1000f;
+            shield = 1000f;
         }
 
         public override void Update(GameTime gameTime)
         {
-            ProcessKeyboard(gameTime);
-            float moveSpeed = gameTime.ElapsedGameTime.Milliseconds / 50.0f * gameSpeed;
-            MoveForward(moveSpeed);
+            if (!isStationary)
+            {
+                Update_ProcessInput(gameTime);
+                float moveSpeed = gameTime.ElapsedGameTime.Milliseconds / 50.0f * gameSpeed;
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    MoveForward(1f);
+                }
+            }
 
             base.Update(gameTime);
         }
 
-        private void ProcessKeyboard(GameTime gameTime)
+        private void Update_ProcessInput(GameTime gameTime)
         {
             float leftRightRot = 0;
 
@@ -47,6 +71,16 @@ namespace Final
 
             Quaternion additionalRot = Quaternion.CreateFromAxisAngle(new Vector3(0, 0, -1), leftRightRot) * Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), upDownRot);
             modelRotation *= additionalRot;
+
+            timeBetweenShots += (float)gameTime.TotalGameTime.Seconds;
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                if (timeBetweenShots > 100f)
+                {
+                    hasFired = true;
+                    timeBetweenShots = 0;
+                }
+            }
         }
 
         private void MoveForward(float speed)

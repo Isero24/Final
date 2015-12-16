@@ -30,11 +30,17 @@ namespace Final
 
         ModelManager modelManager;
 
+        Model localPlayerModel;
+        Model remotePlayerModel;
+
         SpriteFont font;
 
         Texture2D heightmap;
 
         Vector3 lastCameraPosition;
+        Vector3 playerStartingLocation;
+
+        float playerModelScale;
 
         Interface intrface;
 
@@ -69,9 +75,11 @@ namespace Final
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            //graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 1500;
             graphics.PreferredBackBufferHeight = 800;
+
+            playerStartingLocation = new Vector3(40, 40, -3);
+            playerModelScale = .07f;
 
             Content.RootDirectory = "Content";
         }
@@ -86,11 +94,10 @@ namespace Final
         {
             terrainPieces = new List<Terrain>();
 
-            modelManager = new ModelManager(this);
-
-            camera = new Camera(this, new Vector3(100, 800, -100),
+            camera = new Camera(this, new Vector3(100, 200, -100),
                 new Vector3(0, 0, 0), Vector3.Up);
 
+            modelManager = new ModelManager(this, camera);
 
             Components.Add(camera);
             Components.Add(modelManager);
@@ -117,6 +124,9 @@ namespace Final
             _device = graphics.GraphicsDevice;
 
             lastCameraPosition = camera.cameraPosition;
+
+            localPlayerModel = Content.Load<Model>(@"airplane\ju-87");
+            remotePlayerModel = Content.Load<Model>(@"airplane\ju-87");
 
             heightmap = Content.Load<Texture2D>(@"map\Size128\heightmap4");
             //generateTerrain(heightmap);
@@ -146,7 +156,7 @@ namespace Final
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            Window.Title = String.Format("GameState: {0}", currentGameState);
+            //Window.Title = String.Format("GameState: {0}", currentGameState);
 
             if (this.IsActive)
             {
@@ -165,10 +175,10 @@ namespace Final
                     case GameState.Start:
                         Update_Start(gameTime);
                         break;
-                    /*case GameState.InGame:
+                    case GameState.InGame:
                         Update_InGame(gameTime);
                         break;
-                    case GameState.GameOver:
+                    /*case GameState.GameOver:
                         Update_GameOver(gameTime);
                         break;*/
                 }
@@ -255,6 +265,9 @@ namespace Final
                 // the appropriate values to differentiate between local and remote players
                 // Tag is of type Object, which means it can hold any type
                 e.Gamer.Tag = CreateLocalPlayer(e.Gamer.Gamertag);
+
+                // Moved to here instead of down below because network is currently being circumvented
+                e.Gamer.Tag = CreateRemotePlayer(e.Gamer.Gamertag);
             }
             else
             {
@@ -279,7 +292,8 @@ namespace Final
         {
             InitializeLevel();
 
-            localPlayer = new Player(GamerTag);
+            localPlayer = new Player(GamerTag, playerStartingLocation, playerModelScale, camera, true);
+            localPlayer.Initialize(localPlayerModel, modelManager, false);
 
             return localPlayer;
         }
@@ -288,7 +302,8 @@ namespace Final
         {
             InitializeLevel();
 
-            remotePlayer = new Player(GamerTag);
+            remotePlayer = new Player("Player2", playerStartingLocation, playerModelScale, camera, false);
+            remotePlayer.Initialize(remotePlayerModel, modelManager, true);
 
             return remotePlayer;
         }
@@ -300,8 +315,8 @@ namespace Final
 
             // Check for game start key or button press
             // only if there are two players
-            //if (networkSession.AllGamers.Count == 2)
-            //{
+            if (networkSession.AllGamers.Count == 1)
+            {
                 // If space bar or start button is pressed, begin the game
                 //if (Keyboard.GetState().IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
                 //{
@@ -312,7 +327,7 @@ namespace Final
                     // Call StartGame
                     StartGame();
                 //}
-            //}
+            }
 
             // Process any incoming packets
             ProcessIncomingData(gameTime);
@@ -393,9 +408,10 @@ namespace Final
 
             // Read in the new position of the other player
             // Set the position
-            remotePlayer.position = packetReader.ReadVector3(); ;
+            //remotePlayer.position = packetReader.ReadVector3(); ;
 
             // Read any other information from the packet and handle it
+            //remotePlayer.Update(gameTime, true);
         }
 
         protected NetworkGamer GetOtherPlayer()
@@ -415,6 +431,9 @@ namespace Final
             // Update the local player
             UpdateLocalPlayer(gameTime);
 
+            // Update Remote player
+            UpdateRemotePlayer(gameTime);
+
             // Read any incoming data
             ProcessIncomingData(gameTime);
 
@@ -424,7 +443,7 @@ namespace Final
                 // Check for end game conditions, if they are met send a message to other player
                 packetWriter.Write((int)MessageType.EndGame);
                 networkSession.LocalGamers[0].SendData(packetWriter, SendDataOptions.Reliable);
-                EndGame();
+                //EndGame();
             }
         }
 
@@ -444,7 +463,7 @@ namespace Final
 
             // Send message to other player with message tag and new position of local player
             packetWriter.Write((int)MessageType.UpdateRemotePlayer);
-            packetWriter.Write(localPlayer.position);
+            //packetWriter.Write(localPlayer.position);
 
             // Send data to other player
             localGamer.SendData(packetWriter, SendDataOptions.InOrder);
@@ -552,7 +571,7 @@ namespace Final
                 }
             }
 
-            Window.Title = String.Format("Terrain Tiles Drawn: {0} - Total Terrain Tiles: {1}", tilesDrawn, terrainPieces.Count);
+            //Window.Title = String.Format("Terrain Tiles Drawn: {0} - Total Terrain Tiles: {1}", tilesDrawn, terrainPieces.Count);
 
             base.Draw(gameTime);
 
@@ -596,7 +615,7 @@ namespace Final
                 }
             }
 
-            for (int x = 0; x <= splitNum; x++)
+            /*for (int x = 0; x <= splitNum; x++)
             {
                 for (int y = 0; y <= splitNum; y++)
                 {
@@ -606,7 +625,7 @@ namespace Final
                     terrainPieces.Add(new Terrain(this));
                     terrainPieces.Last().load(tempData, 0, 0, 2.0f, 3.0f, x + (splitNum * 1), splitNum - y + (splitNum * 0), segmentSize - 1);
                 }
-            }
+            }*/
         }
 
 

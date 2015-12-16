@@ -281,13 +281,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="airplane\ju-87.fbx">
-      <Name>ju-87</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="airplane\diff.jpg">
       <Name>diff</Name>
       <Importer>TextureImporter</Importer>
@@ -321,17 +314,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="airplane\ju-87 - Copy.fbx">
-      <Name>ju-87 - Copy</Name>
+    <Compile Include="airplane\ju-87.fbx">
+      <Name>ju-87</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bullet.bmp">
+    <Compile Include="bullet.x">
       <Name>bullet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="rocket.x">
+      <Name>rocket</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

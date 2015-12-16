@@ -10,21 +10,19 @@ namespace Final
 {
     public class BasicModel
     {
-
         public Model model { get; protected set; }
-
-        protected GraphicsDevice graphicsDevice;
-        protected Matrix world = Matrix.Identity;
         public Vector3 modelPosition;
-        protected Vector3 velocity;
         public Quaternion modelRotation;
-        protected MouseState prevMouseState;
+        public BoundingSphere bounds;
 
+        protected Matrix world = Matrix.Identity;
+        protected Vector3 velocity;
+        protected MouseState prevMouseState;
         protected float scale;
 
         private float propellerAngle = 0;
 
-        public BasicModel(Model model, Vector3 position, GraphicsDevice graphics, float scale)
+        public BasicModel(Model model, Vector3 position, float scale)
         {
             this.model = model;
 
@@ -32,9 +30,10 @@ namespace Final
             velocity = Vector3.Zero;
             modelRotation = Quaternion.Identity;
             prevMouseState = Mouse.GetState();
-            graphicsDevice = graphics;
             modelPosition = position;
             this.scale = scale;
+
+            bounds = getBoundingSphere();
         }
 
         // Can be overriden by classes that derive from BasicModel
@@ -43,21 +42,20 @@ namespace Final
             propellerAngle -= 0.25f;
         }
 
-        public void Draw(Camera camera)
+        public virtual void Draw(Camera camera, GraphicsDevice graphics)
         {
-            BoundingSphere meshBoundingSphere = getBoundingSphere();
-            
+            RasterizerState rs = new RasterizerState();
+            rs.CullMode = CullMode.None;
+            graphics.RasterizerState = rs;
+
+            graphics.BlendState = BlendState.AlphaBlend;
+
             Matrix[] meshWorldMatrices = new Matrix[2];
-            meshWorldMatrices[1] = Matrix.CreateTranslation(new Vector3(0, 0, 0));
-            meshWorldMatrices[0] = Matrix.CreateRotationZ(propellerAngle);
+            meshWorldMatrices[0] = Matrix.CreateTranslation(new Vector3(0, 0, 0));
+            meshWorldMatrices[1] = Matrix.CreateRotationZ(propellerAngle);
 
             Matrix[] transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
-
-            graphicsDevice.BlendState = BlendState.Opaque;
-            graphicsDevice.DepthStencilState = DepthStencilState.Default;
-            
-            graphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
    
             int meshIndex = 0;
             foreach (ModelMesh mesh in model.Meshes)
@@ -92,6 +90,9 @@ namespace Final
                 else
                     sphere = BoundingSphere.CreateMerged(sphere, mesh.BoundingSphere);
             }
+
+            sphere.Center = modelPosition;
+            sphere.Radius *= scale;
 
             return sphere;
         }

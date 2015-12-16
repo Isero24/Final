@@ -8,12 +8,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Final
 {
-    class SkyBox : BasicModel
+    /*class SkyBox : BasicModel
     {
         public SkyBox(Model model, Vector3 position, GraphicsDevice graphics, float scale)
             : base(model, position, graphics, scale)
         {
             // Constructor
         }
-    }
+    }*/
 }

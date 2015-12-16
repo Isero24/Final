@@ -74,7 +74,7 @@ namespace Final
 
         public void UpdateCamera(BasicModel model)
         {
-            Vector3 campos = new Vector3(0, 100, 200);
+            Vector3 campos = new Vector3(0, 50, 200);
             campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(model.modelRotation));
             campos += model.modelPosition;
 
