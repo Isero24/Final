@@ -81,6 +81,13 @@ namespace Final
             Vector3 camup = new Vector3(0, 1, 0);
             camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(model.modelRotation));
 
+            foreach (Terrain terrain in ((Game1)Game).terrainPieces)
+            {
+                if (terrain.bounds.Contains(campos).Equals(ContainmentType.Contains))
+                    //((Game1)Game).Window.Title = String.Format("Is enemy defeated?: {0}", terrain.bounds.Contains(campos));
+                    ((Game1)Game).Window.Title = String.Format("Is enemy defeated?: {0}", terrain.Intersects(new Ray(campos, Vector3.Down)));
+            }
+
             CreateLookAt(campos, model.modelPosition, camup);
         }
 

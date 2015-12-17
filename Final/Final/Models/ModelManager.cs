@@ -103,7 +103,7 @@ namespace Final
                             }
                         }
 
-                        ((Game1)Game).Window.Title = String.Format("Is enemy defeated?: {0}", fs.isAlive);
+                        //((Game1)Game).Window.Title = String.Format("Is enemy defeated?: {0}", fs.isAlive);
 
                     }
                 }

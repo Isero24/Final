@@ -57,7 +57,7 @@ namespace Final
 
         GraphicsDevice _device;
 
-        List<Terrain> terrainPieces;
+        public List<Terrain> terrainPieces;
 
         public Terrain terrain;
 
